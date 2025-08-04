@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Management App</title>
+  <link rel="stylesheet" href="./style.css">
+  
+</head>
+<body>
+
+  <header>
+    <h1 class="mainn"><i> Contact Management App </i></h1>
+  </header>
+
+  <section>
+    <div class="form-container">
+      <h2>Register</h2>
+      <form id="registration-form">
+        <label >Username:
+        <input type="text" class="username" name="email" required>
+        </label>
+
+
+        <label >email:
+        <input type="email" class="email" name="username" required>
+        </label>
+
+        <label >Password:
+        <input type="password" class="password" name="password" required>
+        </label>
+
+        <button type="submit" onclick="onPress()" class="aaa">Register</button>
+      </form>
+    </div>
+
+    <div class="form-container">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label >Email:
+        <input type="text" class="login-email"  required></label>
+
+        <label>Password:
+        <input type="password" class="login-password"  required></label>
+
+        <button class="aa" type="submit" onclick="onPPress()">Login</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="contacts-container">
+    <h2>Contacts</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="contact-list">
+        <!-- Contacts will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+
+<script>
+
+  // function for registering user
+  function onPress(){  
+  var namee=document.querySelector(".username");
+  var emaill=document.querySelector(".email");
+  var passwordd=document.querySelector(".password");
+  
+  var button=document.querySelector(".aaa");
+  
+
+    var obj={
+      username:namee.value,
+      email:emaill.value,
+      password:passwordd.value
+    };
+fetch("http://localhost:5001/api/users/register/", {method: "POST",
+
+  headers:{
+    "Content-type":"application/json"
+  },
+  body:JSON.stringify(obj)
+});
+  }
+ 
+
+
+// function for login user
+  function onPPress(){
+  var emaill=document.querySelector(".login-email");
+  var passwordd=document.querySelector(".login-password");
+  
+  var button=document.querySelector(".aa");
+  
+
+    var obj={
+      
+      email:emaill.value,
+      password:passwordd.value
+    };
+fetch("http://localhost:5001/api/users/login", {method: "POST",
+
+  headers:{
+    "Content-type":"application/json"
+  },
+  body:JSON.stringify(obj)
+});
+
+}
+   
+</script>
+
+</body>
+</html>
+
